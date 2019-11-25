@@ -33,11 +33,10 @@ public class SessionManager {
     // All Shared Preferences Keys
     private static final String IS_LOGIN = Constants.IS_LOGGED_IN;
 
-    public static final String KEY_NAME = "name";
+    public static final String KEY_FNAME = "f_name";
+    public static final String KEY_LNAME = "l_name";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PHONE = "phone";
-    public static final String KEY_GENDER = "gender";
-    public static final String KEY_DOB = "dob";
     public static  final String KEY_NATID = "natId";
     public static final String TAG_TOKEN = "tagtoken";
 
@@ -52,28 +51,26 @@ public class SessionManager {
 
 
 
-    public void createLoginSession(String name, String phone, String email, String gender, String dob, String natid, String capacity){
+    public void createLoginSession(String f_name, String l_name, String phone, String email, String natid){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
         // Storing name in pref
-        editor.putString(KEY_NAME, name);
+        editor.putString(KEY_FNAME, f_name);
+        editor.putString(KEY_LNAME, l_name);
         editor.putString(KEY_PHONE, phone);
         editor.putString(KEY_EMAIL, email);
-        editor.putString(KEY_GENDER,dob);
-        editor.putString(KEY_DOB,natid);
-        editor.putString(KEY_NATID, gender);
+        editor.putString(KEY_NATID, natid);
         // commit changes
         editor.commit();
     }
 
     public HashMap<String, String> getUserDetails(){
         HashMap<String, String> user = new HashMap<>();
-        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
+        user.put(KEY_FNAME, pref.getString(KEY_FNAME, null));
+        user.put(KEY_LNAME, pref.getString(KEY_LNAME, null));
         user.put(KEY_NATID, pref.getString(KEY_NATID, null));
         user.put(KEY_PHONE, pref.getString(KEY_PHONE, null));
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
-        user.put(KEY_GENDER, pref.getString(KEY_GENDER,null));
-        user.put(KEY_DOB, pref.getString(KEY_DOB,null));
 
         // return user
         return user;

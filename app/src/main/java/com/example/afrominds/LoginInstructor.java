@@ -8,12 +8,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import handler.Constants;
 
 public class LoginInstructor extends AppCompatActivity {
     private EditText em_ail, pass_word;
@@ -22,7 +25,7 @@ public class LoginInstructor extends AppCompatActivity {
     private ImageView fb, google;
 
     //Key Identifiers
-    String email, password;
+    private String email, password;
 
 
     @Override
@@ -40,40 +43,18 @@ public class LoginInstructor extends AppCompatActivity {
         fb = findViewById(R.id.fb_ins);
         google = findViewById(R.id.google_ins);
 
-        //Handle Edittext
-        email = em_ail.getText().toString();
-        password = pass_word.getText().toString();
-
         //Handle Clicks
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Empty returns
-                if (TextUtils.isEmpty(email)) {
-                    em_ail.setError("Email is required");
-
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    pass_word.setError("Password is required");
-                }
-                else {
-
-                    if (!isOnline(LoginInstructor.this)) {
-                        Toast.makeText(getApplicationContext(), "NO INTERNET CONNECTION", Toast.LENGTH_SHORT).show();
-                    } else {
-                        startActivity(new Intent(LoginInstructor.this, AfromindsMain.class));
-                        //loginprocess(email, password);
-                    }
-
-                }
+                attempt_login();
             }
         });
 
         forgot_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(LoginInstructor.this, ForgotPassw.class));
             }
         });
 
@@ -92,9 +73,36 @@ public class LoginInstructor extends AppCompatActivity {
         });
     }
 
+    public void attempt_login(){
+        //Handle Edittext
+        email = em_ail.getText().toString();
+        password = pass_word.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        if (TextUtils.isEmpty(email)) {
+            em_ail.setError("Email is required");
+            focusView = em_ail;
+            cancel = true;
+        }else if (TextUtils.isEmpty(password)) {
+            pass_word.setError("Password is required");
+            focusView = pass_word;
+            cancel = true;
+        }
+
+        if (cancel) {
+            focusView.requestFocus();
+        }else{
+            startActivity(new Intent(LoginInstructor.this, AfromindsMain.class));
+            //loginprocess(email,password);
+        }
+    }
+
     private void loginprocess(String email, String password) {
 
     }
+
 
     @Override
     public void onBackPressed() {

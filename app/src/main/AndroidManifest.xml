@@ -11,12 +11,12 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/final_logo"
-        android:label="@string/app_name"
+        android:label="Afrominds"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AfromindsMain"></activity>
-        <activity android:name=".ForgotPassword" />
+        <activity android:name=".ForgotPassw"></activity>
+        <activity android:name=".AfromindsMain" />
         <activity android:name=".LoginInstructor" />
         <activity android:name=".Switcher" />
         <activity android:name=".LoginStudent" />
