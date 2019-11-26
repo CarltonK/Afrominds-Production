@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="6dp"
+        android:background="#FFF"
+        android:id="@+id/course_card"
+        app:cardBackgroundColor="#FFF"
+        android:elevation="6dp"
+        app:cardCornerRadius="7dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:id="@+id/course_image"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_school_black_24dp"/>
+
+            <customfonts.MyTextView_Poppins_SemiBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:id="@+id/course_name"
+                android:text="Name of Course"
+                android:layout_toRightOf="@+id/course_image"/>
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Role"
+                android:paddingLeft="20dp"
+                android:fitsSystemWindows="true"
+                android:textColor="@color/design_default_color_primary_dark"
+                android:id="@+id/course_tut"
+                android:layout_toRightOf="@+id/course_image"
+                android:layout_below="@+id/course_name"/>
+
+
+            <customfonts.MyTextView_Poppins_Medium
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Role"
+                android:paddingLeft="20dp"
+                android:fitsSystemWindows="true"
+                android:textColor="@color/design_default_color_primary_dark"
+                android:id="@+id/course_descriprion"
+                android:layout_toRightOf="@+id/course_image"
+                android:layout_below="@+id/course_tut"/>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

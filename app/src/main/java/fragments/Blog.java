@@ -38,10 +38,10 @@ public class Blog extends Fragment {
         WebSettings webSettings = blog.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        blog.loadUrl("https://www.binarysecurity.co.ke/blog");
+        blog.loadUrl("https://www.skysports.com/football/news");
 
 
         return view;
     }
-    
+
 }
