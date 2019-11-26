@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import es.dmoral.toasty.Toasty;
 import handler.Constants;
 
 public class LoginStudent extends AppCompatActivity {
@@ -102,7 +103,8 @@ public class LoginStudent extends AppCompatActivity {
         else{
 
             if (!isOnline(LoginStudent.this)) {
-                Toast.makeText(getApplicationContext(), "NO INTERNET CONNECTION", Toast.LENGTH_SHORT).show();
+                Toasty.warning(getApplicationContext(),"NO INTERNET CONNECTION",
+                        Toast.LENGTH_LONG, true).show();
             } else {
                 startActivity(new Intent(LoginStudent.this, AfromindsMain.class));
                 //loginprocess(email,password);

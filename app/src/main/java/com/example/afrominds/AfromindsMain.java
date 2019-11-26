@@ -1,17 +1,28 @@
 package com.example.afrominds;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import es.dmoral.toasty.Toasty;
+import fragments.Blog;
+import fragments.Courses;
+import fragments.Home;
+import fragments.Profile;
+
 public class AfromindsMain extends AppCompatActivity {
+    private BottomNavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,19 +30,40 @@ public class AfromindsMain extends AppCompatActivity {
         setContentView(R.layout.activity_afrominds_main);
         this.getSupportActionBar().hide();
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        /*
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+        navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-                R.id.navigation_home, R.id.navigation_blog, R.id.navigation_courses)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
-         */
+
+        loadFragment(new Home());
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment;
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    fragment = new Home();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_blog:
+                    fragment = new Blog();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_courses:
+                    fragment = new Courses();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_account:
+                    fragment = new Profile();
+                    loadFragment(fragment);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     public void onBackPressed() {
@@ -53,7 +85,8 @@ public class AfromindsMain extends AppCompatActivity {
             @Override
             public void run() {
 
-                Toast.makeText(getApplicationContext(),"See you next time....", Toast.LENGTH_LONG).show();
+                Toasty.info(getApplicationContext(),"See you next time....",
+                        Toast.LENGTH_LONG, true).show();
                 //sessionManager.logoutUser();
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
@@ -62,6 +95,15 @@ public class AfromindsMain extends AppCompatActivity {
                 finish();
             }
         }, 500);
+
+    }
+
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
 
     }
 }

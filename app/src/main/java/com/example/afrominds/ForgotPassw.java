@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import es.dmoral.toasty.Toasty;
+
 public class ForgotPassw extends AppCompatActivity {
     private TextView reset;
     private EditText ema_il;
@@ -55,7 +57,8 @@ public class ForgotPassw extends AppCompatActivity {
         else{
 
             if (!isOnline(ForgotPassw.this)) {
-                Toast.makeText(getApplicationContext(), "NO INTERNET CONNECTION", Toast.LENGTH_SHORT).show();
+                Toasty.warning(getApplicationContext(),"NO INTERNET CONNECTION",
+                        Toast.LENGTH_LONG, true).show();
             } else {
                 startActivity(new Intent(ForgotPassw.this, AfromindsMain.class));
 
