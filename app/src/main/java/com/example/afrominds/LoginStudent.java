@@ -107,6 +107,7 @@ public class LoginStudent extends AppCompatActivity {
                         Toast.LENGTH_LONG, true).show();
             } else {
                 startActivity(new Intent(LoginStudent.this, AfromindsMain.class));
+                finish();
                 //loginprocess(email,password);
 
             }

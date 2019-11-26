@@ -61,7 +61,7 @@ public class ForgotPassw extends AppCompatActivity {
                         Toast.LENGTH_LONG, true).show();
             } else {
                 startActivity(new Intent(ForgotPassw.this, AfromindsMain.class));
-
+                finish();
             }
         }
     }
