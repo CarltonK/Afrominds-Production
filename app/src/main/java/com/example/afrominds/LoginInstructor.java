@@ -85,7 +85,8 @@ public class LoginInstructor extends AppCompatActivity {
             em_ail.setError("Email is required");
             focusView = em_ail;
             cancel = true;
-        }else if (TextUtils.isEmpty(password)) {
+        }
+        else if (TextUtils.isEmpty(password)) {
             pass_word.setError("Password is required");
             focusView = pass_word;
             cancel = true;
@@ -93,9 +94,15 @@ public class LoginInstructor extends AppCompatActivity {
 
         if (cancel) {
             focusView.requestFocus();
-        }else{
-            startActivity(new Intent(LoginInstructor.this, AfromindsMain.class));
-            //loginprocess(email,password);
+        }
+        else{
+            if (!isOnline(LoginInstructor.this)) {
+                Toast.makeText(getApplicationContext(), "NO INTERNET CONNECTION", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(new Intent(LoginInstructor.this, AfromindsMain.class));
+                //loginprocess(email,password);
+
+            }
         }
     }
 

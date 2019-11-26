@@ -38,7 +38,9 @@ public class SessionManager {
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PHONE = "phone";
     public static  final String KEY_NATID = "natId";
+    public static final String KEY_STUDENT = "student_id";
     public static final String TAG_TOKEN = "tagtoken";
+
 
 
 
@@ -51,7 +53,8 @@ public class SessionManager {
 
 
 
-    public void createLoginSession(String f_name, String l_name, String phone, String email, String natid){
+    public void createLoginSession(String f_name, String l_name, String phone,
+                                   String email, String natid, String stu_id){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
         // Storing name in pref
@@ -60,6 +63,7 @@ public class SessionManager {
         editor.putString(KEY_PHONE, phone);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_NATID, natid);
+        editor.putString(KEY_STUDENT, stu_id);
         // commit changes
         editor.commit();
     }
@@ -68,6 +72,7 @@ public class SessionManager {
         HashMap<String, String> user = new HashMap<>();
         user.put(KEY_FNAME, pref.getString(KEY_FNAME, null));
         user.put(KEY_LNAME, pref.getString(KEY_LNAME, null));
+        user.put(KEY_STUDENT, pref.getString(KEY_STUDENT, null));
         user.put(KEY_NATID, pref.getString(KEY_NATID, null));
         user.put(KEY_PHONE, pref.getString(KEY_PHONE, null));
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));

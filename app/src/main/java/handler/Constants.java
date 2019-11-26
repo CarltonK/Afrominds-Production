@@ -10,7 +10,7 @@ public class Constants {
     public static final String PUSH_URL = "";
     public static final String REGISTER_OPERATION = "register";
     public static final String LOGIN_OPERATION = "login";
-    public static final String CHANGE_PASSWORD = "chgPass";
+    public static final String CHANGE_PASSWORD = "changepass";
     public static final String RESET_PASSWORD_INITIATE = "resPassReq";
     public static final String RESET_PASSWORD_FINISH = "resPass";
 

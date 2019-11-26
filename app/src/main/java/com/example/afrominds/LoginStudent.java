@@ -88,7 +88,9 @@ public class LoginStudent extends AppCompatActivity {
             emai_l.setError("Email is required");
             focusView = emai_l;
             cancel = true;
-        }else if (TextUtils.isEmpty(password)) {
+
+        }
+        else if (TextUtils.isEmpty(password)) {
             pass_word.setError("Password is required");
             focusView = pass_word;
             cancel = true;
@@ -96,9 +98,16 @@ public class LoginStudent extends AppCompatActivity {
 
         if (cancel) {
             focusView.requestFocus();
-        }else{
-            startActivity(new Intent(LoginStudent.this, AfromindsMain.class));
-            //loginprocess(email,password);
+        }
+        else{
+
+            if (!isOnline(LoginStudent.this)) {
+                Toast.makeText(getApplicationContext(), "NO INTERNET CONNECTION", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(new Intent(LoginStudent.this, AfromindsMain.class));
+                //loginprocess(email,password);
+
+            }
         }
     }
 
